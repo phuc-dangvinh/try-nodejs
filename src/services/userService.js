@@ -53,6 +53,30 @@ let checkUserEmail = (email) => {
   });
 };
 
+let getAllUsers = (userId) => {
+  return new Promise(async (relsove, reject) => {
+    try {
+      let users;
+      if (userId === "ALL") {
+        users = await db.User.findAll({
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+      }
+      if (userId && userId !== "ALL") {
+        users = await db.User.findOne({
+          where: { id: userId },
+        });
+      }
+      relsove(users);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   handleUserLogin,
+  getAllUsers,
 };
