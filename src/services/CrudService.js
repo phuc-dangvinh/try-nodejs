@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
-var salt = bcrypt.genSaltSync(10);
+const salt = bcrypt.genSaltSync(10);
 
 let createNewUser = async (data) => {
   return new Promise(async (resolve, reject) => {
@@ -102,9 +102,10 @@ let deleteUserById = (userId) => {
 };
 
 module.exports = {
-  createNewUser: createNewUser,
-  getAllUsers: getAllUsers,
-  getUserInfoById: getUserInfoById,
-  updateUserData: updateUserData,
-  deleteUserById: deleteUserById,
+  createNewUser,
+  getAllUsers,
+  getUserInfoById,
+  updateUserData,
+  deleteUserById,
+  hashUserPassword,
 };
